@@ -49,6 +49,7 @@ const drawModule = (function(){
             return true;
         } 
         return false;
+       
     };
   var paint = function () {
     ctx.fillStyle = "lightgrey";
@@ -72,6 +73,8 @@ const drawModule = (function(){
     }
     if (snakeX == -1 || snakeX == w / snakeSize || snakeY == -1 || snakeY == h / snakeSize || checkCollision(snakeX, snakeY, snake)) {
         //Stop the game & make the start button enabled again.
+        alert ("GAME OVER")
+        document.location.reload();
         btn.removeAttribute("disabled", true);
         //Clean up the canvas.
         ctx.clearRect(0, 0, w, h);

@@ -11,4 +11,11 @@ canvas {
   text-align: center;
   margin: auto;
   margin-bottom: 2%;
+  font-family: 'Press Start 2P', cursive;
+}
+h1{
+  font-family: 'Press Start 2P', cursive;
+}
+h2{
+  font-family: 'VT323', monospace;
 }
