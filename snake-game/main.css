@@ -1,0 +1,22 @@
+body {
+  margin: 1%;
+  text-align: center;
+  font-family: helvetica;
+}
+canvas {
+  border: 2px solid black;
+}
+#btn{
+  display: block;
+  text-align: center;
+  margin: auto;
+  margin-bottom: 2%;
+  font-family: 'Press Start 2P', cursive;
+}
+h2{
+  font-family: 'Press Start 2P', cursive;
+}
+h3,
+p{
+  font-family: 'VT323', monospace;
+}
