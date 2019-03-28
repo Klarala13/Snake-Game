@@ -3,25 +3,24 @@ const drawModule = (function(){
         // This is the single square
         ctx.fillStyle = "green";
         ctx.fillRect(x*snakeSize, y*snakeSize, snakeSize, snakeSize);
-        // This is the border of the square
+        // Border
         ctx.strokeStyle = "darkgreen";
         ctx.strokeRect(x*snakeSize, y*snakeSize, snakeSize, snakeSize);
     };
   var pizza = function(x, y) {
-        ctx.fillStyle = "yellow";
+        ctx.fillStyle = "darkred";
         ctx.fillRect(x*snakeSize, y*snakeSize, snakeSize, snakeSize);
-        // This is the single yellow square 
         ctx.fillStyle = "red";
         ctx.fillRect(x*snakeSize+1, y*snakeSize+1, snakeSize-2, snakeSize-2);
     };
   var scoreText = function() {
-        // How many pizzas did the snake eat
         var score_text = "Score: " + score;
-        ctx.fillStyle = "blue";
-        ctx.fillText(score_text, 145, h-5);
+        ctx.fillStyle = "black";
+        ctx.fillText(score_text, 145, h-4);
+        ctx.font = ("16px VT323");
     };
   var drawSnake = function() {
-        // Initially the body of the snake will be formed by 5 squares.
+        // Setup initial length and accumulator.
         var length = 4;
         snake = [];
         for (var i = length; i >= 0; i--) {
@@ -33,7 +32,7 @@ const drawModule = (function(){
             x: Math.floor((Math.random() * 30) + 1),
             y: Math.floor((Math.random() * 30) + 1)
         }
-        //Look at the position of the snake's body because food cannot have same position
+        //Make sure snake and food are not in the same initial position
         for (var i = 0; i > snake.length; i++) {
             var snakeX = snake[i].x;
             var snakeY = snake[i].y;
@@ -52,16 +51,17 @@ const drawModule = (function(){
        
     };
   var paint = function () {
+    //Playground
     ctx.fillStyle = "lightgrey";
     ctx.fillRect(0, 0, w, h);
     ctx.strokeStyle = "black";
     ctx.strokeRect(0, 0, w, h);
-
     //Disable the button _start_ while you're playing.
     btn.setAttribute("disabled", true);
 
     var snakeX = snake[0].x;
     var snakeY = snake[0].y;
+    //Movements
     if (direction == "right") {
         snakeX++;
     } else if (direction == "left") {
@@ -73,16 +73,16 @@ const drawModule = (function(){
     }
     if (snakeX == -1 || snakeX == w / snakeSize || snakeY == -1 || snakeY == h / snakeSize || checkCollision(snakeX, snakeY, snake)) {
         //Stop the game & make the start button enabled again.
-        alert ("GAME OVER")
+        alert("GAME OVER!")
         document.location.reload();
         btn.removeAttribute("disabled", true);
-        //Clean up the canvas.
+        //Clear.
         ctx.clearRect(0, 0, w, h);
         gameloop = clearInterval(gameloop);
         return;
     }
     if (snakeX == food.x && snakeY == food.y) {
-        //Create a new square instead of moving the tail.
+        //Make snake grow
         var tail = {
             x: snakeX,
             y: snakeY
@@ -110,7 +110,7 @@ const drawModule = (function(){
       direction = "down";
       drawSnake();
       createFood();
-      gameloop = setInterval(paint, 80);
+      gameloop = setInterval(paint, 100);
   };
   return {
       init: init
